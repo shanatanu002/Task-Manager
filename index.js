@@ -21,6 +21,16 @@ app.get("/files/:filename", function(req, res){
    })
 })
 
+app.get("/edit/:filename", function(req, res){
+  res.render('edit', {filename: req.params.filename});
+})
+
+app.post("/edit", function(req, res){
+  fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new}`, function(err){
+    res.redirect("/");
+  })
+})
+
 app.post("/create", function(req, res){   // after submission our data will come on this route
    fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function(err){ //1st to give the file name as an argument of the function we will split the title and it waill form an array of the string words and then on joining with nothing('') it will be modified into a single string
     res.redirect("/"); // while creating the file go on to the post route and after creation of the file comeback to the original route "/" where a new file will be present to be read

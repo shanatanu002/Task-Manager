@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -21,8 +21,11 @@
      <% files.forEach(function(val){ %>
         <div class="task min-w-72 px-3 py-4 rounded-md bg-zinc-800">
             <h1 class="text-white text-3xl tracking-tighter">The task is <%= val %> </h1> <!-- all the data of files is first being stored in val -->
-             <a class="text-blue-500 inline-block mt-3" href="/files/<%= val %>">Read More</a>  <!-- now the url will have the filename which can be taken from the params of the route used as  -->
-          </div>
+            <div class="flex w-full justify-between items-center mt-3">
+              <a class="text-blue-500 inline-block" href="/files/<%= val %>">Read More</a>  <!-- now the url will have the filename which can be taken from the params of the route used as  -->
+              <a class="text-zinc-600" href="/edit/<%= val %>">edit filename</a> 
+            </div> 
+         </div>
       <% }) %> 
     <% } else{ %>
         <h3 class="text-zincs-600">No task yet.</h3>
