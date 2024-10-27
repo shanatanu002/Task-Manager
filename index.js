@@ -15,11 +15,16 @@ app.get("/", function(req, res){
     })    
 })
 
+app.get("/files/:filename", function(req, res){
+   fs.readFile(`./files/${req.params.filename}`, "utf-8", function(err, filedata){ //UTF-8 is passed as an argument to convert buffer filedata in hexadecimal to english  
+    res.render('show', {filename: req.params.filename, filedata: filedata}); // the parameter(url of the route) have the name of the file as we have use the val of the link to be included in the url in index.ejs file , for sending the filedata we read the request and filedata is stored in filedata  
+   })
+})
+
 app.post("/create", function(req, res){   // after submission our data will come on this route
    fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function(err){ //1st to give the file name as an argument of the function we will split the title and it waill form an array of the string words and then on joining with nothing('') it will be modified into a single string
     res.redirect("/"); // while creating the file go on to the post route and after creation of the file comeback to the original route "/" where a new file will be present to be read
    }); 
-   
 })
 
 app.listen(3000);

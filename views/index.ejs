@@ -21,11 +21,11 @@
      <% files.forEach(function(val){ %>
         <div class="task min-w-72 px-3 py-4 rounded-md bg-zinc-800">
             <h1 class="text-white text-3xl tracking-tighter">The task is <%= val %> </h1> <!-- all the data of files is first being stored in val -->
-            <a class="text-blue-500 inline-block mt-3" href="">Read More</a>  
+             <a class="text-blue-500 inline-block mt-3" href="/files/<%= val %>">Read More</a>  <!-- now the url will have the filename which can be taken from the params of the route used as  -->
           </div>
       <% }) %> 
     <% } else{ %>
-        <h3 class="text-zincs-600">no task yet.</h3>
+        <h3 class="text-zincs-600">No task yet.</h3>
     <% } %>
    </div>
  </div>
